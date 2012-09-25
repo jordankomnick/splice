@@ -23,7 +23,7 @@ public:
 	/**
 	 * Given a handle, return the associated data
 	 **/
-	virtual double getData(void* handle)=0;
+	virtual double getData(void* handle);
 
 	/**
 	 * Inserts the new data item into the list after t
