@@ -1,6 +1,7 @@
 #include "List.h"
 
 class Node {
+public:
 	Node* next;
 	double data;
 };
@@ -18,6 +19,11 @@ public:
 	 * return a handle to the ith item of the list.
 	 */
 	virtual void* at(int i);
+
+	/**
+	 * Given a handle, return the associated data
+	 **/
+	virtual double getData(void* handle)=0;
 
 	/**
 	 * Inserts the new data item into the list after t
