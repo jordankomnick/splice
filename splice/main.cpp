@@ -12,8 +12,33 @@ int arr_len;
  * return its index. If not, return -1. So
  * indexOf(arr+2) should return 2...
  **/
+//ends up being linear time because of the for loop
+/*
 int indexOf(double* h){
+	for(int i = 0; i < arr_len; i++)
+	{
+		if(arr + i == h)
+		{
+			return i;
+		}
+	}
+	return -1;
+}*/
 
+//a better solution, constant time
+int indexOf(double* h)
+{
+	//get # bytes between h and arr pointers
+	int offset = (char*)h - (char*)arr;
+	//divide by size of a double
+	int index = offset/sizeof(double);
+
+	//make sure index is positive, less than the length of arr, and an even multiple of a double
+	if(index < 0 || index >= arr_len || (offset % sizeof(double)) != 0)
+	{
+		return -1;
+	}
+	return index;
 }
 
 int main(){
@@ -21,9 +46,13 @@ int main(){
 	arr = new double[arr_len];
 	double test;
 
+	//should return 15 because we entered arr[15]
 	cout << indexOf(&arr[15]) << endl;
+	//should return -1 when accessing out of bounds
 	cout << indexOf(&arr[1500]) << endl;
+	//shoud return -1 when accessing something not in the array
 	cout << indexOf(&test) << endl;
+	//moves you 1 byte down instead of 8 bytes, throwing everything off, should return -1
 	cout << indexOf(  (double*)(((char*)arr)+1)  ) << endl;
 
 	/*
