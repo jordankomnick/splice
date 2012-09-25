@@ -1,10 +1,11 @@
 #include <iostream>
 #include "LinkedList.h"
+#include "ArrayList.h"
 
 using namespace std;
 
 int main(){
-	LinkedList l;
+	ArrayList l;
 
 	l.pushFront(1.0);
 	l.pushFront(2.0);
